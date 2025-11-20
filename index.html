@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cargill Cloud & Infrastructure Consulting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="High-level VMware, cloud, automation, identity, and network engineering consulting for mid-market enterprises, MSPs, and SaaS companies." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59,130,246,0.12);
+      --accent-strong: #2563eb;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --card-bg: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0 1.25rem;
+      position: sticky;
+      top: 0;
+      background: linear-gradient(to bottom, rgba(2,6,23,0.96), rgba(2,6,23,0.84), transparent);
+      backdrop-filter: blur(14px);
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      padding-bottom: 0.2rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2.5rem;
+      padding: 2rem 0 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      nav ul {
+        flex-wrap: wrap;
+      }
+    }
+
+    .hero-pre {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 32rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.25rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-outline {
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.8);
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.7);
+    }
+
+    .hero-panel {
+      border-radius: 1.2rem;
+      border: 1px solid rgba(55,65,81,0.8);
+      background: radial-gradient(circle at top left, rgba(37,99,235,0.28), rgba(15,23,42,0.96));
+      padding: 1.25rem 1.3rem;
+      box-shadow: 0 25px 60px rgba(15,23,42,0.85);
+    }
+
+    .hero-panel-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-panel-main {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-panel-list {
+      list-style: none;
+      font-size: 0.88rem;
+      display: grid;
+      gap: 0.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.7);
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 2.5rem 0 1.5rem;
+      border-top: 1px solid rgba(31,41,55,0.7);
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+
+    @media (max-width: 800px) {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 0.9rem;
+      border: 1px solid rgba(31,41,55,0.9);
+      padding: 1rem 1.1rem;
+      font-size: 0.9rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .pill-label {
+      display: inline-flex;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.9);
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    ul { padding-left: 1.1rem; }
+    li { margin-bottom: 0.2rem; }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.8fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .split { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .package-card {
+      background: radial-gradient(circle at top left, rgba(59,130,246,0.12), rgba(15,23,42,0.98));
+      border-radius: 1rem;
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 1rem 1.1rem 1.1rem;
+      font-size: 0.9rem;
+    }
+
+    .package-name {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .package-price {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+    }
+
+    .package-list {
+      font-size: 0.85rem;
+      padding-left: 1rem;
+    }
+
+    .alt-brands {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .alt-brand {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.9);
+      color: var(--muted);
+    }
+
+    .contact-section { text-align: left; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr);
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .contact-block {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(31,41,55,0.7);
+      margin-top: 2.5rem;
+      padding-top: 1.2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-title">Cargill Cloud & Infrastructure Consulting</div>
+        <div class="brand-sub">Enterprise Infrastructure • Cloud • VMware • Automation</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- HERO -->
+      <section class="hero" id="overview">
+        <div>
+          <div class="hero-pre">Senior Infrastructure & Cloud Consulting</div>
+          <h1 class="hero-title">Modern Infrastructure. Senior Expertise. No Full-Time Hire Required.</h1>
+          <p class="hero-sub">
+            High-level engineering services specializing in VMware architecture, cloud migrations, automation,
+            identity/security integrations, and enterprise modernization — built on 20+ years of hands-on experience.
+          </p>
+
+          <div class="hero-cta">
+            <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Schedule a Consultation
+            </button>
+            <button class="btn-outline" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">
+              View Consulting Packages
+            </button>
+          </div>
+
+          <div class="hero-tags">
+            <span class="hero-tag">VMware • vCenter • ESXi</span>
+            <span class="hero-tag">Azure & AWS Cloud</span>
+            <span class="hero-tag">Terraform & Automation</span>
+            <span class="hero-tag">Okta • Keyfactor • PAM</span>
+            <span class="hero-tag">SD-WAN • Velocloud • Meraki</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-panel-title">Executive Summary</div>
+          <div class="hero-panel-main">
+            Premium infrastructure & cloud consulting for mid-market enterprises, MSPs, and SaaS companies.
+          </div>
+          <ul class="hero-panel-list">
+            <li>Managed 700+ VMs across enterprise vCenter environments</li>
+            <li>Led SD-WAN migrations for 300+ sites</li>
+            <li>Architected large-scale DR solutions</li>
+          </ul>
+          <div class="hero-pill">
+            <span>20+ years enterprise IT</span>
+            <span>•</span>
+            <span>Hands-on engineering</span>
+          </div>
+
+          <div class="alt-brands" style="margin-top:0.7rem;">
+            <span class="alt-brand">Cargill Systems Engineering Group</span>
+            <span class="alt-brand">Velocity Infrastructure & Cloud Solutions</span>
+            <span class="alt-brand">Central Texas Cloud Engineering</span>
+            <span class="alt-brand">Terraform & VMware Solutions Group</span>
+          </div>
+        </aside>
+      </section>
+
+      <!-- TARGET CLIENTS -->
+      <section class="section" id="clients">
+        <h2>Target Clients</h2>
+        <p class="section-subtitle">
+          Designed for organizations that need senior-level infrastructure leadership without another full-time hire.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="pill-label">Primary (Highest Value)</div>
+            <div class="card-title">High-Impact Environments</div>
+            <ul>
+              <li>Mid-market companies (200–5,000 employees)</li>
+              <li>Healthcare groups</li>
+              <li>Retail chains • multi-site operations</li>
+              <li>SaaS companies with scaling needs</li>
+              <li>MSPs needing senior escalation</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="pill-label">Secondary</div>
+            <div class="card-title">Growing Teams & Modernization</div>
+            <ul>
+              <li>Startups needing architecture guidance</li>
+              <li>Small businesses with legacy environments</li>
+              <li>Organizations needing part-time senior engineering</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="section" id="services">
+        <h2>Core Services</h2>
+        <p class="section-subtitle">Full-stack infrastructure, cloud, and automation expertise.</p>
+
+        <div class="split">
+          <div class="card">
+            <div class="card-title">1. Cloud Engineering & Migration</div>
+            <ul>
+              <li>Azure / AWS migrations</li>
+              <li>Identity, governance, networking</li>
+              <li>Hybrid cloud integrations</li>
+              <li>O365 / Exchange migrations</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">2. VMware Engineering</div>
+            <ul>
+              <li>vCenter upgrades to 7/8</li>
+              <li>ESXi remediation</li>
+              <li>Storage migrations</li>
+              <li>SRM & DR architecture</li>
+              <li>Large-scale retail deployments</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="split" style="margin-top:1.4rem;">
+          <div class="card">
+            <div class="card-title">3. DevOps & Automation</div>
+            <ul>
+              <li>Terraform (Azure / AWS / VMware)</li>
+              <li>Azure DevOps Repos & Pipelines</li>
+              <li>CI/CD automation</li>
+              <li>PowerShell & Python scripting</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">4. Identity & Security</div>
+            <ul>
+              <li>Okta SSO/SCIM</li>
+              <li>AD / Azure AD cleanup & restructure</li>
+              <li>Keyfactor + Key Vault automation</li>
+              <li>Secret Server (PAM) deployments</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="split" style="margin-top:1.4rem;">
+          <div class="card">
+            <div class="card-title">5. Network & SD-WAN</div>
+            <ul>
+              <li>VMware Velocloud SD-WAN</li>
+              <li>Cisco Meraki migrations</li>
+              <li>Firewalls: ASA / Firepower / Palo Alto</li>
+              <li>VPN & segmentation architecture</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">6. DR & Business Continuity</div>
+            <ul>
+              <li>DR site buildouts</li>
+              <li>SAN replication architecture</li>
+              <li>Backup modernization</li>
+              <li>RTO/RPO planning</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADVANTAGES -->
+      <section class="section">
+        <h2>Your Advantage with Cargill</h2>
+        <p class="section-subtitle">Beyond generic “IT services”—true enterprise engineering.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Rare Skill Blend</div>
+            <ul>
+              <li>VMware + Cloud + DevOps + Identity + Networking</li>
+              <li>Deep multi-environment experience</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Enterprise-Proven</div>
+            <ul>
+              <li>Major migrations delivered successfully</li>
+              <li>Ideal for MSP subcontracting</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Automation-First</div>
+            <ul>
+              <li>IaC and CI/CD by default</li>
+              <li>Automations others can’t build</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Leadership & Clarity</div>
+            <ul>
+              <li>Executive-ready communication</li>
+              <li>Teams led at major companies</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PACKAGES -->
+      <section class="section" id="packages">
+        <h2>Consulting Packages & Pricing</h2>
+        <p class="section-subtitle">
+          Hourly: $110–$150/hr (standard) • $150–$200/hr (specialized VMware & automation)
+        </p>
+
+        <div class="package-grid">
+
+          <div class="package-card">
+            <div class="package-name">⭐ VMware Health Check</div>
+            <div class="package-price">$1,500 remote • $2,500 on-site</div>
+            <ul class="package-list">
+              <li>vCenter review</li>
+              <li>Host compliance</li>
+              <li>Storage evaluation</li>
+              <li>vSwitch/vDS check</li>
+              <li>Performance analysis</li>
+              <li>Remediation plan</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <div class="package-name">⭐ Azure Landing Zone</div>
+            <div class="package-price">$3,500 – $8,000</div>
+            <ul class="package-list">
+              <li>Governance</li>
+              <li>Identity integration</li>
+              <li>Networking</li>
+              <li>Budgets & guardrails</li>
+              <li>Monitoring & baselines</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <div class="package-name">⭐ Terraform IaC Buildout</div>
+            <div class="package-price">$2,500 – $12,000</div>
+            <ul class="package-list">
+              <li>Repo structure</li>
+              <li>Azure DevOps pipelines</li>
+              <li>Remote state</li>
+              <li>Documentation</li>
+              <li>Key Vault integration</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <div class="package-name">⭐ Keyfactor + Key Vault Automation</div>
+            <div class="package-price">$3,000 – $10,000</div>
+            <ul class="package-list">
+              <li>API workflow integration</li>
+              <li>Certificate automation</li>
+              <li>Secrets sync</li>
+              <li>Policy enforcement</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <div class="package-name">⭐ Secret Server + PAM Automation</div>
+            <div class="package-price">$4,000 – $10,000</div>
+            <ul class="package-list">
+              <li>Install & configure</li>
+              <li>RBAC & folder structure</li>
+              <li>Credential rotation</li>
+              <li>Service account automation</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <div class="package-name">⭐ Cloud Migration Package</div>
+            <div class="package-price">$8,000 – $40,000</div>
+            <ul class="package-list">
+              <li>Assessment</li>
+              <li>Design & planning</li>
+              <li>Migration & cutover</li>
+              <li>Documentation</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <div class="package-name">⭐ MSP Senior Escalation Retainer</div>
+            <div class="package-price">$2,500/mo (10h) • $5,000/mo (20h)</div>
+            <ul class="package-list">
+              <li>High-tier VMware/cloud support</li>
+              <li>Architecture review</li>
+              <li>Incident resolution</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <div class="package-name">⭐ SD-WAN Deployment (Velocloud/Meraki)</div>
+            <div class="package-price">$5,000 – $30,000</div>
+            <ul class="package-list">
+              <li>Site templates</li>
+              <li>Firewall rulesets</li>
+              <li>Monitoring & alerts</li>
+              <li>Deployment automation</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section contact-section" id="contact">
+        <h2>Contact & Next Steps</h2>
+        <p class="section-subtitle">
+          Ready to modernize your infrastructure? Send a message and you’ll receive a reply within 1–2 business days.
+        </p>
+
+        <div class="contact-grid">
+
+          <!-- LEFT -->
+          <div class="contact-block">
+            <h3 style="font-size:1rem;margin-bottom:0.4rem;">Direct Contact</h3>
+            <p>
+              <strong>Email:</strong> <a href="mailto:jeremiahcargill@gmail.com">jeremiahcargill@gmail.com</a><br />
+              <strong>Phone:</strong> <a href="tel:15126760060">512-676-0060</a><br />
+              <strong>Location:</strong> Central Texas • Remote U.S. clients welcome
+            </p>
+
+            <p style="margin-top:0.7rem;">
+              Send details about your environment and project. I’ll provide a recommended approach (health check, project, or retainer).
+            </p>
+
+            <h3 style="font-size:1rem;margin-top:1.2rem;margin-bottom:0.4rem;">Suggested First Engagements</h3>
+            <ul>
+              <li>VMware Health Check</li>
+              <li>Azure/AWS Review</li>
+              <li>Terraform Automation Assessment</li>
+              <li>DR / Business Continuity Review</li>
+            </ul>
+          </div>
+
+          <!-- RIGHT — CONTACT FORM -->
+          <div class="contact-block">
+            <h3 style="font-size:1rem;margin-bottom:0.4rem;">Send a Message</h3>
+
+            <form action="https://formspree.io/f/xeonvoql" method="POST" style="display:flex;flex-direction:column;gap:0.75rem;">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+                style="padding:0.6rem;border-radius:0.4rem;border:1px solid var(--border);background:var(--card-bg);color:var(--text);"
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+                style="padding:0.6rem;border-radius:0.4rem;border:1px solid var(--border);background:var(--card-bg);color:var(--text);"
+              />
+
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                style="padding:0.6rem;border-radius:0.4rem;border:1px solid var(--border);background:var(--card-bg);color:var(--text);"
+              />
+
+              <textarea
+                name="message"
+                placeholder="Describe your environment, project, or issue…"
+                rows="5"
+                required
+                style="padding:0.6rem;border-radius:0.4rem;border:1px solid var(--border);background:var(--card-bg);color:var(--text);"
+              ></textarea>
+
+              <!-- Anti-spam honeypot -->
+              <input type="text" name="_gotcha" style="display:none" />
+
+              <button type="submit" class="btn-primary" style="width:max-content;">
+                Send Message
+              </button>
+
+              <p style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem;">
+                Your message is securely delivered via Formspree.
+              </p>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Cargill Cloud & Infrastructure Consulting. All rights reserved.</div>
+      <div>Also operating as: Cargill Systems Engineering Group • Velocity Infrastructure & Cloud Solutions • Central Texas Cloud Engineering • Terraform & VMware Solutions Group.</div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
